@@ -1,0 +1,1 @@
+..\..\..\bin\lcc -o 3d.gb 3d.c primitives.c math.c
