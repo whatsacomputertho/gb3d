@@ -1,30 +1,50 @@
 #include <gb/gb.h>
 #include "math.h"
 
-// Round a fixed to the nearest INT8
-void round(INT8 *o, fixed x) {
-    if (x.b.l < 128) {
-        *o = (INT8)(x.b.h);
-    } else {
-        *o = (INT8)(x.b.h + 1);
-    }
+// Multiply two i16s
+// Here the i16s are meant to represent a fixed-point decimal
+// 0000 0000 . 0000 xxxx
+INT16 _i16mul(INT16 x, INT16 y) {
+    INT16 r;
+    x = x >> 4;
+    y = y >> 4;
+    r = x * y;
+    r = r >> 8;
+    return r;
 }
 
-// Multiply an INT8 by a fixed
-void multiply(INT8 *o, INT8 x, fixed y) {
-    // Initialize a fixed from x
-    fixed t;
-    t.b.h = x;
-    t.b.l = 0;
+// Convert a i8 to a i16 ahead of multiplication
+INT16 _i8toi16(INT8 x) {
+    INT16 t;
+    t = (INT16)x;
+    t = t << 8;
+    return t;
+}
 
-    // Multiply the fixed point numbers
-    fixed p;
-    p.w = t.w * y.w;
+// Convert a i16 to a i8
+INT8 i16toi8(INT16 x) {
+    return (INT8)x;
+}
 
-    // Shift the product back to get the result
-    fixed r;
-    r.w = p.w >> 8;
+// Convert an i8 to a u8
+// Treated as a coordinate for drawing to the screen
+UINT8 i8tou8(INT8 x) {
+    return (UINT8)x + 87;
+}
 
-    // Round the result and return it
-    round(o, r);
+// Convert an i8 to a u8
+// Treated as a coordinate for drawing to the screen
+INT8 u8toi8(UINT8 x) {
+    return (INT8)x;
+}
+
+// Multiply a i8 with a i16
+// Here the i16 is meant to represent a fixed-point decimal
+// 0000 0000 . 0000 xxxx
+INT8 i8i16mul(INT8 x, INT16 y) {
+    INT16 t;
+    t = _i8toi16(x);
+    INT16 r;
+    r = _i16mul(y, t);
+    return i16toi8(r);
 }
