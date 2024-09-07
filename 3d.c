@@ -11,6 +11,7 @@ void clear(void) {
             wrtchr(' '); // Use wrtchr to place a character when using the drawing library
         }
     }
+    gotogxy(0, 0);
 }
 
 /**
@@ -19,20 +20,16 @@ void clear(void) {
 
 void main(void) {
     // Initialize transformation matrix
-    fixed q;
-    q.b.h = 0;
-    q.b.l = 192;
-    fixed z;
-    z.b.h = 0;
-    z.b.l = 0;
-    Vec3f m1;
-    setCoordsf(&m1, q, z, z);
-    Vec3f m2;
-    setCoordsf(&m2, z, q, z);
-    Vec3f m3;
-    setCoordsf(&m3, z, z, q);
+    INT16 q;
+    q = 176; // cos pi/4 and sin pi/4
+    Vec3f r1;
+    setCoordsf(&r1, q, -q, 0);
+    Vec3f r2;
+    setCoordsf(&r2, q, q, 0);
+    Vec3f r3;
+    setCoordsf(&r3, 0, 0, 0);
     Mat3f m;
-    setColumns(&m, m1, m2, m3);
+    setRows(&m, r1, r2, r3);
 
     // Initialize Vec3s
     Vec3 v1;
@@ -62,10 +59,12 @@ void main(void) {
         // Draw & transform the Tris
         drawTri(t1);
         drawTri(t2);
+        //printTri(t1);
+        //printTri(t2);
         transformTri(&t1, m);
         transformTri(&t2, m);
 
         // Delay ahead of next iter
-        delay(1000);
+        delay(10);
     }
 }

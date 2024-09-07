@@ -7,7 +7,7 @@ typedef struct vec3 {
 } Vec3;
 
 // Setter for Vec3 struct properties
-void setCoords(Vec3 *v, INT8 x, INT8 y, INT8 z);
+void setCoords(Vec3 *v, UINT8 x, UINT8 y, UINT8 z);
 
 // Define a Tri struct
 typedef struct tri {
@@ -20,21 +20,24 @@ void setVerts(Tri *t, Vec3 v1, Vec3 v2, Vec3 v3);
 // Draws a Tri to the screen
 void drawTri(Tri t);
 
+// Prints a Tri to the screen
+void printTri(Tri t);
+
 // Define a Vec3f struct
 typedef struct vec3f {
-    fixed x, y, z;
+    INT16 x, y, z;
 } Vec3f;
 
 // Setter for Vec3f struct properties
-void setCoordsf(Vec3f *v, fixed x, fixed y, fixed z);
+void setCoordsf(Vec3f *v, INT16 x, INT16 y, INT16 z);
 
 // Define a Mat3f struct
 typedef struct mat3f {
-    Vec3f c1, c2, c3;
+    Vec3f r1, r2, r3;
 } Mat3f;
 
 // Setter for Mat3f struct properties
-void setColumns(Mat3f *m, Vec3f v1, Vec3f v2, Vec3f v3);
+void setRows(Mat3f *m, Vec3f r1, Vec3f r2, Vec3f r3);
 
 // Transform Vec3 coordinates using a Mat3f
 void transformCoords(Vec3 *v, Mat3f m);
