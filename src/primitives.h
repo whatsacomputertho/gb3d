@@ -45,4 +45,28 @@ void transformCoords(Vec3 *v, Mat3f m);
 // Transform Tri coordinates using a Mat3f
 void transformTri(Tri *t, Mat3f m);
 
+// Define a Vec4 struct
+typedef struct vec4 {
+    INT8 x, y, z, w;
+} Vec4;
+
+// Setter for Vec4 struct properties
+void setCoords4(Vec4 *v, UINT8 x, UINT8 y, UINT8 z, UINT8 w);
+
+// Define a Vec4f struct
+typedef struct vec4f {
+    INT16 x, y, z, w;
+} Vec4f;
+
+// Setter for Vec4f struct properties
+void setCoords4f(Vec4f *v, INT16 x, INT16 y, INT16 z, INT16 w);
+
+// Define a Mat4f struct
+typedef struct mat4f {
+    Vec4f r1, r2, r3, r4;
+} Mat4f;
+
+// Setter for Mat4f struct properties
+void setRows4f(Mat4f *m, Vec4f r1, Vec4f r2, Vec4f r3, Vec4f r4);
+
 #endif
