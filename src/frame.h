@@ -1,7 +1,7 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-#define MAX_MESHES 8
+#define MAX_MESHES 2
 
 // A frame struct stores the meshes that are rendered
 typedef struct frame {
@@ -15,6 +15,6 @@ typedef struct frame {
 void setMesh(Frame *f, UINT8 i, Mesh m);
 
 // Update the frame, applying a transform in the process
-void updateFrame(Frame *f, Mat3f t);
+void updateFrame(Frame *f, Mat3 t);
 
 #endif

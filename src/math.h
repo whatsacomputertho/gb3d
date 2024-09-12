@@ -1,28 +1,19 @@
 #ifndef MATH_H
 #define MATH_H
 
-// Multiply two i16s
-// Here the i16s are meant to represent a fixed-point decimal
-// 0000 0000 . 0000 xxxx
-INT16 _i16mul(INT16 x, INT16 y);
+#define WIDTH_OFFSET 80
+#define HEIGHT_OFFSET 72
+#define DEPTH_OFFSET 76
 
-// Convert a i8 to a i16 ahead of multiplication
-INT16 _i8toi16(INT8 x);
+// Multiply two i32s
+// Here the i32s are meant to represent a fixed-point decimal
+// 0000 0000 0000 0000 . 0000 0000 xxxx xxxx
+INT32 i32mul(INT32 x, INT32 y);
 
-// Convert a i16 to a i8
-INT8 i16toi8(INT16 x);
+// Convert a u8 to an i32 ahead of multiplication
+INT32 u8toi32(UINT8 x);
 
-// Convert an i8 to a u8
-// Treated as a coordinate for drawing to the screen
-UINT8 i8tou8(INT8 x);
-
-// Convert a u8 to an i8
-// Treated as the underlying value on which math is done
-INT8 u8toi8(UINT8 x);
-
-// Multiply a i8 with a i16
-// Here the i16 is meant to represent a fixed-point decimal
-// 0000 0000 . 0000 xxxx
-INT8 i8i16mul(INT8 x, INT16 y);
+// Convert an i32 to a u8
+UINT8 i32tou8(INT32 x, UINT8 offset);
 
 #endif

@@ -19,7 +19,7 @@ void drawMesh(Mesh *m);
 void printMesh(Mesh *m);
 
 // Transforms the mesh
-void transformMesh(Mesh *m, Mat3f t);
+void transformMesh(Mesh *m, Mat3 t);
 
 // Clears the mesh from the screen
 void clearMesh(Mesh *m);
