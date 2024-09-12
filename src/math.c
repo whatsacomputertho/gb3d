@@ -1,50 +1,43 @@
 #include <gb/gb.h>
 #include "math.h"
 
-// Multiply two i16s
-// Here the i16s are meant to represent a fixed-point decimal
-// 0000 0000 . 0000 xxxx
-INT16 _i16mul(INT16 x, INT16 y) {
-    INT16 r;
-    x = x >> 4;
-    y = y >> 4;
-    r = x * y;
-    r = r >> 8;
+// Round an i32 to the nearest integer
+// Here the i32s are meant to represent a fixed-point decimal
+// 0000 0000 0000 0000 . 0000 0000 xxxx xxxx
+INT32 i32round(INT32 x) {
+    UINT8 t;
+    t = (UINT8)(x >> 8);
+    INT32 m;
+    m = (x & 65535);
+    INT32 r;
+    r = (x ^ m);
+    if (t > 128) {
+        return r + 1;
+    }
     return r;
 }
 
-// Convert a i8 to a i16 ahead of multiplication
-INT16 _i8toi16(INT8 x) {
-    INT16 t;
-    t = (INT16)x;
-    t = t << 8;
+// Multiply two i32s
+// Here the i32s are meant to represent a fixed-point decimal
+// 0000 0000 0000 0000 . 0000 0000 xxxx xxxx
+INT32 i32mul(INT32 x, INT32 y) {
+    INT32 r;
+    r = (x >> 8) * (y >> 8);
+    r = i32round(r);
+    return r;
+}
+
+// Convert a u8 to an i32 ahead of multiplication
+INT32 u8toi32(UINT8 x) {
+    INT32 t;
+    t = (INT32)x;
+    t = t << 16;
     return t;
 }
 
-// Convert a i16 to a i8
-INT8 i16toi8(INT16 x) {
-    return (INT8)x;
-}
-
-// Convert an i8 to a u8
-// Treated as a coordinate for drawing to the screen
-UINT8 i8tou8(INT8 x) {
-    return (UINT8)x + 87;
-}
-
-// Convert an i8 to a u8
-// Treated as a coordinate for drawing to the screen
-INT8 u8toi8(UINT8 x) {
-    return (INT8)x;
-}
-
-// Multiply a i8 with a i16
-// Here the i16 is meant to represent a fixed-point decimal
-// 0000 0000 . 0000 xxxx
-INT8 i8i16mul(INT8 x, INT16 y) {
-    INT16 t;
-    t = _i8toi16(x);
-    INT16 r;
-    r = _i16mul(y, t);
-    return i16toi8(r);
+// Convert an i32 to a u8
+UINT8 i32tou8(INT32 x, UINT8 offset) {
+    UINT8 t;
+    t = ((UINT8)(x >> 16)) + offset;
+    return t;
 }

@@ -1,6 +1,8 @@
 #include <gb/gb.h>
 #include <gb/drawing.h>
-#include "primitives.h"
+#include "math.h"
+#include "linalg.h"
+#include "tri.h"
 #include "mesh.h"
 #include "frame.h"
 
@@ -10,42 +12,42 @@
 
 void main(void) {
     // Initialize transformation matrix
-    INT16 q;
-    q = 176; // cos pi/4 and sin pi/4
-    Vec3f r1;
-    setCoordsf(&r1, q, -q, 0);
-    Vec3f r2;
-    setCoordsf(&r2, q, q, 0);
-    Vec3f r3;
-    setCoordsf(&r3, 0, 0, 1);
-    Mat3f m;
-    setRows(&m, r1, r2, r3);
+    INT32 q;
+    q = 46336; // cos pi/4 and sin pi/4
+    Vec3 r1;
+    setCoords3(&r1, q, -q, 0);
+    Vec3 r2;
+    setCoords3(&r2, q, q, 0);
+    Vec3 r3;
+    setCoords3(&r3, 0, 0, 1);
+    Mat3 m;
+    setRows3(&m, r1, r2, r3);
 
     // Initialize Vec3s
     Vec3 v1;
-    setCoords(&v1, 0, 0, 0);
+    setCoords3(&v1, u8toi32(0), u8toi32(0), u8toi32(0));
     Vec3 v2;
-    setCoords(&v2, 0, 40, 0);
+    setCoords3(&v2, u8toi32(0), u8toi32(40), u8toi32(0));
     Vec3 v3;
-    setCoords(&v3, 40, 0, 0);
+    setCoords3(&v3, u8toi32(40), u8toi32(0), u8toi32(0));
     Vec3 v4;
-    setCoords(&v4, 0, 40, 0);
+    setCoords3(&v4, u8toi32(0), u8toi32(40), u8toi32(0));
     Vec3 v5;
-    setCoords(&v5, 40, 0, 0);
+    setCoords3(&v5, u8toi32(40), u8toi32(0), u8toi32(0));
     Vec3 v6;
-    setCoords(&v6, 40, 40, 0);
+    setCoords3(&v6, u8toi32(40), u8toi32(40), u8toi32(0));
     Vec3 v7;
-    setCoords(&v7, 0, 0, 40);
+    setCoords3(&v7, u8toi32(0), u8toi32(0), u8toi32(40));
     Vec3 v8;
-    setCoords(&v8, 0, 40, 40);
+    setCoords3(&v8, u8toi32(0), u8toi32(40), u8toi32(40));
     Vec3 v9;
-    setCoords(&v9, 40, 0, 40);
+    setCoords3(&v9, u8toi32(40), u8toi32(0), u8toi32(40));
     Vec3 v10;
-    setCoords(&v10, 0, 40, 40);
+    setCoords3(&v10, u8toi32(0), u8toi32(40), u8toi32(40));
     Vec3 v11;
-    setCoords(&v11, 40, 0, 40);
+    setCoords3(&v11, u8toi32(40), u8toi32(0), u8toi32(40));
     Vec3 v12;
-    setCoords(&v12, 40, 40, 40);
+    setCoords3(&v12, u8toi32(40), u8toi32(40), u8toi32(40));
 
     // Initialize Tris
     Tri t1;

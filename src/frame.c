@@ -1,5 +1,6 @@
 #include <gb/gb.h>
-#include "primitives.h"
+#include "linalg.h"
+#include "tri.h"
 #include "mesh.h"
 #include "frame.h"
 
@@ -13,7 +14,7 @@ void setMesh(Frame *f, UINT8 i, Mesh m) {\
 }
 
 // Update the frame, applying a transform in the process
-void updateFrame(Frame *f, Mat3f t) {
+void updateFrame(Frame *f, Mat3 t) {
     UINT8 i;
     if (f->activeFrame % 2 == 0) {
         for (i = 0; i < f->numMeshes; i++) {

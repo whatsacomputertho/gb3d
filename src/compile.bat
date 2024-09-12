@@ -1,1 +1,1 @@
-..\..\..\bin\lcc -o 3d.gb 3d.c primitives.c math.c mesh.c frame.c
+..\..\..\bin\lcc -o 3d.gb 3d.c math.c linalg.c tri.c mesh.c frame.c

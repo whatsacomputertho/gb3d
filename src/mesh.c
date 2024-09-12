@@ -2,7 +2,9 @@
 #include <string.h>
 #include <gb/gb.h>
 #include <gb/drawing.h>
-#include "primitives.h"
+#include "math.h"
+#include "linalg.h"
+#include "tri.h"
 #include "mesh.h"
 
 // Copies a mesh into another mesh
@@ -29,7 +31,7 @@ void printMesh(Mesh *m) {
 }
 
 // Transforms the mesh
-void transformMesh(Mesh *m, Mat3f t) {
+void transformMesh(Mesh *m, Mat3 t) {
     UINT8 i;
     for (i = 0; i < m->numTris; i++) {
         transformTri(&(m->tris[i]), t);
