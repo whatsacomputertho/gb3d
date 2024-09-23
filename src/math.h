@@ -10,6 +10,11 @@
 // 0000 0000 0000 0000 . 0000 0000 xxxx xxxx
 INT32 i32mul(INT32 x, INT32 y);
 
+// Divide two i32s
+// Here the i32s are meant to represent a fixed-point decimal
+// 0000 0000 0000 0000 . 0000 0000 xxxx xxxx
+INT32 i32div(INT32 x, INT32 y);
+
 // Convert a u8 to an i32 ahead of multiplication
 INT32 u8toi32(UINT8 x);
 
