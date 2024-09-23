@@ -10,7 +10,7 @@ This is my latest proof-of-concept.  I made a first attempt at implementing a pe
 
 In this animation, I attempt to also apply a rotation transformation in which I rotate the cube about the z-axis.  This led to a bit of glitchiness, so I'll likely need to improve upon this by spending a bit of time refining the underlying fixed-point math.
 
-In the process, I also dealt with my first instance in which my ROM size grew too large for the GameBoy to handle.  I ultimately needed to cut corners on memory usage as much as possible to enable this rotation to be executed in the first place.
+In the process, I also dealt with my first instance in which my ROM size grew too large for the GameBoy to handle.  I ultimately needed to cut corners on memory usage as much as possible to enable this rotation to be executed in the first place.  This involved cutting down on the max size of meshes, and migrating from tris to quads to define a cube mesh using fewer vertices.
 
 # Square rotation
 
