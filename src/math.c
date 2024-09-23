@@ -27,6 +27,16 @@ INT32 i32mul(INT32 x, INT32 y) {
     return r;
 }
 
+// Divide two i32s
+// Here the i32s are meant to represent a fixed-point decimal
+// xxxx xxxx 0000 0000 . 0000 0000 xxxx xxxx
+INT32 i32div(INT32 x, INT32 y) {
+    INT32 r;
+    r = x / y;
+    r = r << 16;
+    return r;
+}
+
 // Convert a u8 to an i32 ahead of multiplication
 INT32 u8toi32(UINT8 x) {
     INT32 t;
